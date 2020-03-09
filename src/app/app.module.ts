@@ -9,12 +9,13 @@ import { TextComponent } from "./text/text.component";
 import { LinearGaugeComponent } from "./linear-gauge/linear-gauge.component";
 import { RadialGaugeComponent } from "./radial-gauge/radial-gauge.component";
 import { DeviceDetectorModule } from 'ngx-device-detector';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
 @NgModule({
   imports: [
     BrowserModule,
     GaugesModule,
     FormsModule,
+    MatFormFieldModule,
     DeviceDetectorModule.forRoot(),
     ReactiveFormsModule
   ],
