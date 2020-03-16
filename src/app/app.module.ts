@@ -9,23 +9,20 @@ import { TextComponent } from "./text/text.component";
 import { LinearGaugeComponent } from "./linear-gauge/linear-gauge.component";
 import { RadialGaugeComponent } from "./radial-gauge/radial-gauge.component";
 
-import { DeviceDetectorModule } from 'ngx-device-detector';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { RouterModule,Routes } from '@angular/router';
+import { DeviceDetectorModule } from "ngx-device-detector";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { RouterModule, Routes } from "@angular/router";
+import { HighlightDirective } from "./text/highlight.directive";
 
 const appRoutes: Routes = [
-  { path: 'linear', component: LinearGaugeComponent },
-  { path: 'radial',component: RadialGaugeComponent },
+  { path: "linear", component: LinearGaugeComponent },
+  { path: "radial", component: RadialGaugeComponent },
   {
-    path: 'text',
-    component: TextComponent,
+    path: "text",
+    component: TextComponent
   },
-  { path: '',
-    redirectTo: '/linear',
-    pathMatch: 'full'
-  },
+  { path: "", redirectTo: "/linear", pathMatch: "full" }
 ];
-
 
 @NgModule({
   imports: [
@@ -35,7 +32,7 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     DeviceDetectorModule.forRoot(),
     ReactiveFormsModule,
-      RouterModule.forRoot(
+    RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     )
@@ -46,9 +43,10 @@ const appRoutes: Routes = [
     SafePipe,
     TextComponent,
     LinearGaugeComponent,
-    RadialGaugeComponent
+    RadialGaugeComponent,
+    HighlightDirective
   ],
-  exports: [SafePipe],
+  exports: [SafePipe, HighlightDirective],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
