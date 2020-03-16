@@ -1,4 +1,4 @@
-<mat-form-field class="example-full-width">
+<!-- <mat-form-field class="example-full-width">
 	<mat-label>Address</mat-label>
 	<textarea matInput placeholder="Ex. 100 Main St">1600 Amphitheatre Pkwy</textarea>
 </mat-form-field>
@@ -6,7 +6,15 @@
 <app-linear-gauge [linearUIConfig]="linearUIConfig" [inputValue]="20" [dataConfig]="{'min':0, 'max':220}">
 </app-linear-gauge>
 
-<app-radial-gauge></app-radial-gauge>
+<app-radial-gauge></app-radial-gauge> -->
+<h1>Angular Router</h1>
+<nav>
+	<a routerLink="/linear" routerLinkActive="active">linear</a>
+	<a routerLink="/radial" routerLinkActive="active">radial</a>
+  <a routerLink="/text" routerLinkActive="active">text</a>
+</nav>
+<router-outlet></router-outlet>
+
 
 <!-- <hello name="{{ name }}"></hello>
 
