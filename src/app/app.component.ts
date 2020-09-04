@@ -38,7 +38,7 @@ export class AppComponent implements OnInit {
       id: 10,
       name: "Reena Singh",
       age: 28,
-      average: 99,
+      'average.name': {id:12, name:'ssss'},
       approved: true,
       description: "I am active HR."
     },

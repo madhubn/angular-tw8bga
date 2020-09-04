@@ -37,7 +37,7 @@ export class AppService {
     let row = "S.No,";
 
     for (let index in headerList) {
-      row += headerList[index] + ",";
+      row += (headerList[index].toUpperCase()) + ",";
     }
     row = row.slice(0, -1);
     str += row + "\r\n";
