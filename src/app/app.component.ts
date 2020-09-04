@@ -2,6 +2,7 @@ import { Component, SecurityContext, OnInit } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { FormArray, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { DeviceDetectorService } from "ngx-device-detector";
+import { AppService } from "./app.service";
 
 export class LinearUIConfig {
   colorPlate: String;
@@ -24,6 +25,33 @@ export class AppComponent implements OnInit {
   html: string;
   h_html: string;
 
+  jsonData = [
+    {
+      id: 2,
+      name: "Anil Singh",
+      age: 33,
+      average: 98,
+      approved: true,
+      description: "I am active blogger and Author."
+    },
+    {
+      id: 10,
+      name: "Reena Singh",
+      age: 28,
+      average: 99,
+      approved: true,
+      description: "I am active HR."
+    },
+    {
+      id: 20,
+      name: "Aradhya",
+      age: 4,
+      average: 99,
+      approved: true,
+      description: "I am engle."
+    }
+  ];
+
   linearUIConfig: LinearUIConfig = new LinearUIConfig();
 
   public form: FormGroup;
@@ -38,7 +66,7 @@ export class AppComponent implements OnInit {
   }
 
   // returns all form groups under contacts
-  get staticFormGroup() {  
+  get staticFormGroup() {
     return this.form.get("statics") as FormArray;
   }
 
@@ -55,7 +83,8 @@ export class AppComponent implements OnInit {
   constructor(
     private sanitizer: DomSanitizer,
     private fb: FormBuilder,
-    private deviceService: DeviceDetectorService
+    private deviceService: DeviceDetectorService,
+    private appService: AppService
   ) {
     this.html = '<svg onload="alert(1)"> blah </svg>';
     this.h_html = sanitizer.sanitize(
@@ -71,7 +100,7 @@ export class AppComponent implements OnInit {
     this.linearUIConfig.colorPlate = "black";
     this.linearUIConfig.colorStrokeTicks = "#fff";
     this.linearUIConfig.colorTitle = "#fff";
-    console.log(new Date().getTime())
+    console.log(new Date().getTime());
   }
 
   onChange(data: any) {
@@ -179,17 +208,20 @@ export class AppComponent implements OnInit {
   submit() {
     console.log(this.form.value);
   }
-deviceInfo = null;
+  deviceInfo = null;
 
   epicFunction() {
-      console.log('hello `Home` component');
-      this.deviceInfo = this.deviceService.getDeviceInfo();
-      const isMobile = this.deviceService.isMobile();
-      const isTablet = this.deviceService.isTablet();
-      const isDesktopDevice = this.deviceService.isDesktop();
-      console.log(this.deviceInfo);
-      console.log(isMobile);  // returns if the device is a mobile device (android / iPhone / windows-phone etc)
-      console.log(isTablet);  // returns if the device us a tablet (iPad etc)
-      console.log(isDesktopDevice); // returns if the app is running on a Desktop browser.
-    }
+    console.log("hello `Home` component");
+    this.deviceInfo = this.deviceService.getDeviceInfo();
+    const isMobile = this.deviceService.isMobile();
+    const isTablet = this.deviceService.isTablet();
+    const isDesktopDevice = this.deviceService.isDesktop();
+    console.log(this.deviceInfo);
+    console.log(isMobile); // returns if the device is a mobile device (android / iPhone / windows-phone etc)
+    console.log(isTablet); // returns if the device us a tablet (iPad etc)
+    console.log(isDesktopDevice); // returns if the app is running on a Desktop browser.
+  }
+  download() {
+    this.appService.downloadFile(this.jsonData, "jsontocsv");
+  }
 }
