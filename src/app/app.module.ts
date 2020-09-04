@@ -13,6 +13,7 @@ import { DeviceDetectorModule } from "ngx-device-detector";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { RouterModule, Routes } from "@angular/router";
 import { HighlightDirective } from "./text/highlight.directive";
+import { AppService } from './app.service';
 
 const appRoutes: Routes = [
   { path: "linear", component: LinearGaugeComponent },
@@ -47,6 +48,7 @@ const appRoutes: Routes = [
     HighlightDirective
   ],
   exports: [SafePipe, HighlightDirective],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [AppService]
 })
 export class AppModule {}
